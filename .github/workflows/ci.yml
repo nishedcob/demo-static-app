@@ -20,6 +20,9 @@ jobs:
         echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username $DOCKER_HUB_USER
         docker push nishedcob/demo-static-app:$GITHUB_SHA
         docker push nishedcob/demo-static-app:$(git rev-parse --short HEAD)
+      with:
+        DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       env:
         DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
         DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
