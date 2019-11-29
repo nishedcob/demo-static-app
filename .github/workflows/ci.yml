@@ -15,14 +15,12 @@ jobs:
       run: |
         docker tag nishedcob/demo-static-app:ci nishedcob/demo-static-app:$GITHUB_SHA
         docker tag nishedcob/demo-static-app:ci nishedcob/demo-static-app:$(git rev-parse --short HEAD)
+    - name: Login to Docker Hub
+      uses: azure/docker-login@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Push to Docker Hub
       run: |
-        echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username $DOCKER_HUB_USER
         docker push nishedcob/demo-static-app:$GITHUB_SHA
         docker push nishedcob/demo-static-app:$(git rev-parse --short HEAD)
-      with:
-        DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
-        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      env:
-        DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
-        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
