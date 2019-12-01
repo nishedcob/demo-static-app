@@ -24,3 +24,7 @@ run_test_image:
 
 delete_test_image:
 	$(DOCKER) rmi nishedcob/demo-static-app:test
+
+pipenv_freeze:
+	pipenv run pip freeze > requirements.txt
+	pipenv install -r requirements.txt

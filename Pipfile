@@ -1,0 +1,14 @@
+[[source]]
+verify_ssl = true
+name = "pypi"
+url = "https://pypi.org/simple"
+
+[requires]
+python_version = "3.6"
+
+[dev-packages]
+
+[packages]
+"ninja2" = "==0.1"
+"Jinja2" = "==2.10.3"
+MarkupSafe = "==1.1.1"
