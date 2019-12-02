@@ -18,8 +18,21 @@ run_base_image:
 stop_base_image:
 	$(DOCKER) stop tmp-nginx-container
 
-build_test_image:
+env: requirements.txt
+	virtualenv --python python3 env
+	env/bin/pip install -r requirements.txt
+
+config.json: config.yaml env
+	env/bin/yq '.' $< > $@
+
+index.html: index.html.j2 config.json env
+	env/bin/ninja2 -j $< < config.json > $@
+	rm -rdvf env
+	rm -v config.json
+
+build_test_image: index.html
 	$(DOCKER) build -t nishedcob/demo-static-app:test .
+	rm -v $<
 
 run_test_image:
 	$(DOCKER) run --name test-demo-static-app --rm -p 80:80 nishedcob/demo-static-app:test
