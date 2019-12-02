@@ -1,0 +1,6 @@
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+-e git+https://github.com/sspreitzer/ninja2@0.2\#egg=ninja2
+PyYAML==5.1.2
+xmltodict==0.12.0
+yq==2.9.2
