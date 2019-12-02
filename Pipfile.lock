@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3a7cad00ed739589ac5a63192f6df4ea79e017d9979cc2ad8a5d74a457d25621"
+            "sha256": "0fc80b51aad3588636cba4008b8d616451b6db090ccd3a471758c7dbfc50fc87"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -59,11 +59,9 @@
             "version": "==1.1.1"
         },
         "ninja2": {
-            "hashes": [
-                "sha256:ffa877f11609273500c7b252d9998f9591664f70bd791d9bb233e44006caa76c"
-            ],
-            "index": "pypi",
-            "version": "==0.1"
+            "editable": true,
+            "git": "https://github.com/sspreitzer/ninja2",
+            "ref": "0.2"
         },
         "pyyaml": {
             "hashes": [

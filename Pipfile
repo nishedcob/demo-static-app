@@ -9,9 +9,9 @@ python_version = "3.6"
 [dev-packages]
 
 [packages]
-"ninja2" = "==0.1"
+"ninja2" = {editable = true, ref = "0.2", git = "https://github.com/sspreitzer/ninja2"}
 "Jinja2" = "==2.10.3"
 MarkupSafe = "==1.1.1"
 yq = "==2.9.2"
-pyyaml = "==5.1.2"
 xmltodict = "==0.12.0"
+PyYAML = "==5.1.2"

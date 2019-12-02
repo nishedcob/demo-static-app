@@ -2,6 +2,8 @@
 SUDO=
 #SUDO=sudo
 DOCKER=$(SUDO) docker
+PIP_NINJA_GIT_PATCH=s_ninja2==0\.2_-e git+https://github.com/sspreitzer/ninja2@0.2\#egg=ninja2_
+PIP_GIT_PATCHES=sed '$(PIP_NINJA_GIT_PATCH)'
 
 help:
 	@echo "run_base_image    - Run base Docker image, useful for extracting base files that we want to modify"
@@ -26,5 +28,5 @@ delete_test_image:
 	$(DOCKER) rmi nishedcob/demo-static-app:test
 
 pipenv_freeze:
-	pipenv run pip freeze > requirements.txt
+	pipenv run pip freeze | $(PIP_GIT_PATCHES) > requirements.txt
 	pipenv install -r requirements.txt
