@@ -8,7 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout Commit
+      uses: actions/checkout@v1
+    - name: Install jq
+      run: sudo apt install jq
+    - name: Build index.html
+      run: make index.html
     - name: Build Docker Image
       run: docker build -t nishedcob/demo-static-app:ci .
     - name: Tag Docker Image
