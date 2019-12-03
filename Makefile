@@ -6,11 +6,13 @@ PIP_NINJA_GIT_PATCH=s_ninja2==0\.2_-e git+https://github.com/sspreitzer/ninja2@0
 PIP_GIT_PATCHES=sed '$(PIP_NINJA_GIT_PATCH)'
 
 help:
-	@echo "run_base_image    - Run base Docker image, useful for extracting base files that we want to modify"
-	@echo "stop_base_image   - Delete base Docker container when we are done extracting what we want"
-	@echo "build_test_image  - Build our test image"
-	@echo "run_test_image    - Run our test image"
-	@echo "delete_test_image - Delete our test image"
+	@echo "run_base_image      - Run base Docker image, useful for extracting base files that we want to modify"
+	@echo "stop_base_image     - Delete base Docker container when we are done extracting what we want"
+	@echo "build_test_image    - Build our test image"
+	@echo "run_test_image      - Run our test image"
+	@echo "shell_in_test_image - Get a shell in our test image"
+	@echo "delete_test_image   - Delete our test image"
+	@echo "pipenv_freeze       - Freeze dependencies in Pipfile / Pipfile.lock / requirements.txt"
 
 run_base_image:
 	$(DOCKER) run --rm --name tmp-nginx-container -d nginx:stable-alpine
@@ -36,6 +38,9 @@ build_test_image: index.html
 
 run_test_image:
 	$(DOCKER) run --name test-demo-static-app --rm -p 80:80 nishedcob/demo-static-app:test
+
+shell_in_test_image:
+	$(DOCKER) exec -it $$($(DOCKER) ps | grep 'test-demo-static-app' | awk '{ print $$1 }') /bin/sh
 
 delete_test_image:
 	$(DOCKER) rmi nishedcob/demo-static-app:test
