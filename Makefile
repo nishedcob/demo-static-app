@@ -8,6 +8,9 @@ PIP_GIT_PATCHES=sed '$(PIP_NINJA_GIT_PATCH)'
 help:
 	@echo "run_base_image      - Run base Docker image, useful for extracting base files that we want to modify"
 	@echo "stop_base_image     - Delete base Docker container when we are done extracting what we want"
+	@echo "env                 - Create virtualenv and install requirements.txt"
+	@echo "config.json         - Convert config.yaml to config.json"
+	@echo "index.html          - Build index.html from index.html.j2 and config.json"
 	@echo "build_test_image    - Build our test image"
 	@echo "run_test_image      - Run our test image"
 	@echo "shell_in_test_image - Get a shell in our test image"
